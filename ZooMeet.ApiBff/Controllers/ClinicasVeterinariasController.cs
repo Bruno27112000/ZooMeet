@@ -14,10 +14,17 @@ public class ClinicasVeterinariasController : ControllerBase
         _clinicaVeterinariaService = clinicaVeterinariaService;
     }
 
-    [HttpGet]
+    [HttpGet("GetAll")]
     public async Task<IActionResult> GetAll()
     {
         var clinicas = await _clinicaVeterinariaService.ObterTodas();
         return Ok(clinicas);
+    }
+
+    [HttpGet("GetVeterinaryById")]
+    public async Task<IActionResult> GetVeterinaryById(Guid id)
+    {
+        var clinica = await _clinicaVeterinariaService.ObterPorId(id);
+        return Ok(clinica);
     }
 }
